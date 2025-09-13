@@ -1,7 +1,9 @@
 import './styles/fontsAndReset.css';
 import './styles/styles.css';
 
-const something = false;
-function hello(halkfdj) {
-  const hell = 12;
+function sum(a, b) {
+  return a + b;
 }
+
+module.exports = {};
+module.exports.sum = sum;
