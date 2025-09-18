@@ -17,8 +17,12 @@ class Gameboard {
     };
   }
 
-  placeShips(Ship, xCoor, yCoor) {
-    
+  placeShips(shipLength, xCoor, yCoor) {
+    if (yCoor + shipLength < 11 || xCoor < 10) {
+      for (let i = 0; i < shipLength; i++) {
+        this.board[yCoor + i][xCoor] = 'S';
+      }
+    }
   }
 
   printBoard() {
