@@ -18,9 +18,20 @@ class Gameboard {
   }
 
   placeShips(shipLength, xCoor, yCoor) {
-    if (yCoor + shipLength < 11 || xCoor < 10) {
+    if (yCoor + shipLength < 11 && xCoor < 10) {
+      let canplace = true;
       for (let i = 0; i < shipLength; i++) {
-        this.board[yCoor + i][xCoor] = 'S';
+        if (this.board[yCoor + i][xCoor] !== 'e') {
+          canplace = false;
+        }
+      }
+
+      if (canplace === true) {
+        for (let i = 0; i < shipLength; i++) {
+          this.board[yCoor + i][xCoor] = 'S';
+        }
+      } else {
+        console.log('Could not place the ship');
       }
     }
   }
@@ -50,3 +61,7 @@ function createEmptyRow() {
     9: 'e',
   };
 }
+
+
+let ho = new Gameboard();
+ho.printBoard();
