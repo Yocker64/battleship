@@ -11,5 +11,35 @@ test('Should NOT be able to place a ship off the board', () => {
   const board = new Gameboard();
 
   // This ship would go past the bottom edge (y=8, 9, 10) - which is out of bounds
-  expect(board.canPlace(3, 1, 8)).toBe(false);
+  expect(board.canPlace(3, 1, 8, true)).toBe(false);
+});
+
+test('Should NOT be able to place a ship over another ship', () => {
+  const board = new Gameboard();
+
+  board.placeShips(2, 1, 1, true);
+
+  expect(board.canPlace(3, 1, 1, true)).toBe(false);
+});
+
+test('Should be able to put a ship horizontally', () => {
+  const board = new Gameboard();
+
+  expect(board.canPlace(3, 1, 1, false)).toBe(true);
+});
+
+test('Should not be able to put a ship over another ship horizontally', () => {
+  const board = new Gameboard();
+
+  board.placeShips(4, 0, 0, true);
+
+  expect(board.canPlace(3, 0, 3, false)).toBe(false);
+});
+
+test('Should be able to attack a ship and say that a ship was hit', () => {
+  const board = new Gameboard();
+
+  board.placeShips(4, 0, 0, true);
+
+  expect(board.attack(0, 0)).toBe(true);
 });
